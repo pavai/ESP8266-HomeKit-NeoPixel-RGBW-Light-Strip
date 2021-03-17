@@ -1,29 +1,23 @@
 /*
    Copyright 2019 Achim Pieters | StudioPieters®
-
    Permission is hereby granted, free of charge, to any person obtaining a copy
    of this software and associated documentation files (the "Software"), to deal
    in the Software without restriction, including without limitation the rights
    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
    copies of the Software, and to permit persons to whom the Software is
    furnished to do so, subject to the following conditions:
-
    The above copyright notice and this permission notice shall be included in all
    copies or substantial portions of the Software.
-
    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
    More information: https://www.studiopieters.nl
-
    NOTE:
    1) the ws2812_i2s library uses hardware I2S so output pin is GPIO3 and cannot be changed.
    2) on some ESP8266 such as the Wemos D1 mini, GPIO3 is the same pin used for serial comms.
-
  */
 
 #include <stdio.h>
@@ -45,7 +39,7 @@
 
 #define LED_ON 0           // this is the value to write to GPIO for led on (0 = GPIO low)
 #define LED_INBUILT_GPIO 2 // this is the onboard LED used to show on/off only
-#define LED_COUNT 600      // this is the number of WS2812B leds on the strip
+#define LED_COUNT 552      // this is the number of WS2812B leds on the strip
 #define LED_RGBW_SCALE 255 // this is the scaling factor used for color conversion
 
 // Global variables
@@ -304,7 +298,7 @@ void led_saturation_set(homekit_value_t value)
 }
 
 homekit_accessory_t *accessories[] = {
-    HOMEKIT_ACCESSORY(.id = 1, .category = homekit_accessory_category_lightbulb, .services = (homekit_service_t *[]){HOMEKIT_SERVICE(ACCESSORY_INFORMATION, .characteristics = (homekit_characteristic_t *[]){HOMEKIT_CHARACTERISTIC(NAME, "RGBW Strip"), HOMEKIT_CHARACTERISTIC(MANUFACTURER, "StudioPieters®"), HOMEKIT_CHARACTERISTIC(SERIAL_NUMBER, "Q39QDPS7GRX6"), HOMEKIT_CHARACTERISTIC(MODEL, "HKSP1T/S"), HOMEKIT_CHARACTERISTIC(FIRMWARE_REVISION, "0.0.1"), HOMEKIT_CHARACTERISTIC(IDENTIFY, identify), NULL}), HOMEKIT_SERVICE(LIGHTBULB, .primary = true, .characteristics = (homekit_characteristic_t *[]){HOMEKIT_CHARACTERISTIC(NAME, "RGBW Strip"), HOMEKIT_CHARACTERISTIC(ON, true, .getter = led_on_get, .setter = led_on_set), HOMEKIT_CHARACTERISTIC(BRIGHTNESS, 100, .getter = led_brightness_get, .setter = led_brightness_set), HOMEKIT_CHARACTERISTIC(HUE, 0, .getter = led_hue_get, .setter = led_hue_set), HOMEKIT_CHARACTERISTIC(SATURATION, 0, .getter = led_saturation_get, .setter = led_saturation_set), NULL
+    HOMEKIT_ACCESSORY(.id = 1, .category = homekit_accessory_category_lightbulb, .services = (homekit_service_t *[]){HOMEKIT_SERVICE(ACCESSORY_INFORMATION, .characteristics = (homekit_characteristic_t *[]){HOMEKIT_CHARACTERISTIC(NAME, "RGBW Strip"), HOMEKIT_CHARACTERISTIC(MANUFACTURER, "StudioPieters®"), HOMEKIT_CHARACTERISTIC(SERIAL_NUMBER, "Q39QDPS7GRX7"), HOMEKIT_CHARACTERISTIC(MODEL, "HKSP1T/S"), HOMEKIT_CHARACTERISTIC(FIRMWARE_REVISION, "0.0.1"), HOMEKIT_CHARACTERISTIC(IDENTIFY, identify), NULL}), HOMEKIT_SERVICE(LIGHTBULB, .primary = true, .characteristics = (homekit_characteristic_t *[]){HOMEKIT_CHARACTERISTIC(NAME, "RGBW Strip"), HOMEKIT_CHARACTERISTIC(ON, true, .getter = led_on_get, .setter = led_on_set), HOMEKIT_CHARACTERISTIC(BRIGHTNESS, 100, .getter = led_brightness_get, .setter = led_brightness_set), HOMEKIT_CHARACTERISTIC(HUE, 0, .getter = led_hue_get, .setter = led_hue_set), HOMEKIT_CHARACTERISTIC(SATURATION, 0, .getter = led_saturation_get, .setter = led_saturation_set), NULL
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         }),
                                                                                                                      NULL}),
